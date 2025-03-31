@@ -12,6 +12,8 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Tela1 {
 
@@ -51,12 +53,28 @@ public class Tela1 {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		JLabel labelSenha = new JLabel("Senha:");
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		campoNome = new JTextField();
+		campoNome.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+					if(campoNome.getText().equals("A")) {
+						senha.setEnabled(true);
+						btnNewButton.setEnabled(true);
+						labelSenha.setEnabled(true);
+						btnNewButton.requestFocus();
+					}else {
+						mostrarNome.setText("Usuário Inexistente");
+					}
+				}
+			}
+		});
 		campoNome.setBounds(129, 65, 173, 23);
 		frame.getContentPane().add(campoNome);
 		campoNome.setColumns(10);
@@ -71,24 +89,24 @@ public class Tela1 {
 		frame.getContentPane().add(mostrarNome);
 		
 		senha = new JPasswordField();
+		senha.setEnabled(false);
 		senha.setBounds(129, 118, 173, 20);
 		frame.getContentPane().add(senha);
 		
-		JLabel labelSenha = new JLabel("Senha:");
+		labelSenha.setEnabled(false);
 		labelSenha.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		labelSenha.setBounds(10, 110, 109, 25);
 		frame.getContentPane().add(labelSenha);
 		
 		btnNewButton = new JButton("MOSTRAR");
+		btnNewButton.setEnabled(false);
 		btnNewButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				if(senha.getText().equals("A") && campoNome.getText().equals("A")) {
+				if(senha.getText().equals("A")) {
 					mostrarNome.setText("Acertou");
-				}else if(campoNome.getText().equals("A")) {
-					mostrarNome.setText("Senha errada");
-				}else{
-					mostrarNome.setText("Usuário Inexistente");
+				}else {
+					mostrarNome.setText("Senha Incorreta");
 				}
 			}
 		});
