@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 
 public class Tela1 {
 
@@ -18,6 +19,10 @@ public class Tela1 {
 	private JTextField campoNome;
 	private JLabel lblNewLabel;
 	private JLabel mostrarNome;
+	private JPasswordField senha;
+	private JButton btnNewButton;
+	
+	private Character[] aSenha = {'A'};
 
 	/**
 	 * Launch the application.
@@ -52,28 +57,42 @@ public class Tela1 {
 		frame.getContentPane().setLayout(null);
 		
 		campoNome = new JTextField();
-		campoNome.setBounds(129, 60, 86, 20);
+		campoNome.setBounds(129, 65, 173, 23);
 		frame.getContentPane().add(campoNome);
 		campoNome.setColumns(10);
 		
-		JButton btnNewButton = new JButton("MOSTRAR");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				mostrarNome.setText(campoNome.getText());
-			
-			}
-		});
-		btnNewButton.setBounds(165, 161, 89, 23);
-		frame.getContentPane().add(btnNewButton);
-		
 		lblNewLabel = new JLabel("Nome:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lblNewLabel.setBounds(10, 45, 109, 54);
 		frame.getContentPane().add(lblNewLabel);
 		
 		mostrarNome = new JLabel("");
-		mostrarNome.setBounds(33, 189, 46, 14);
+		mostrarNome.setBounds(23, 189, 137, 23);
 		frame.getContentPane().add(mostrarNome);
+		
+		senha = new JPasswordField();
+		senha.setBounds(129, 118, 173, 20);
+		frame.getContentPane().add(senha);
+		
+		JLabel labelSenha = new JLabel("Senha:");
+		labelSenha.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		labelSenha.setBounds(10, 110, 109, 25);
+		frame.getContentPane().add(labelSenha);
+		
+		btnNewButton = new JButton("MOSTRAR");
+		btnNewButton.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent e) {
+				if(senha.getText().equals("A") && campoNome.getText().equals("A")) {
+					mostrarNome.setText("Acertou");
+				}else if(campoNome.getText().equals("A")) {
+					mostrarNome.setText("Senha errada");
+				}else{
+					mostrarNome.setText("Usuário Inexistente");
+				}
+			}
+		});
+		btnNewButton.setBounds(170, 189, 89, 23);
+		frame.getContentPane().add(btnNewButton);
 	}
 }
