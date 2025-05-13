@@ -1,1 +1,1 @@
-Todas as atividades e projetos deenvolvidos durante a disciplina de de PDS no CTI de Informática do IFSC Câmpus Gaspar.
+Some activities developed in PDS (Practices on Systems Development) discipline with Java and the Windowbuilder plugin.
